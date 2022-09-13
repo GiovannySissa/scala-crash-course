@@ -1,0 +1,7 @@
+options:
+  - title: Content
+    url: index
+  - title: FP concepts
+    url: functional-programming
+  - title: Scala
+    url: scala-fp
