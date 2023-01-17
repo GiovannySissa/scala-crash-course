@@ -1,4 +1,4 @@
-scalaVersion := "2.13.3"
+scalaVersion := "2.13.9"
 organization := "com.github.gs"
 name := "scc" // scala-crash-course
 

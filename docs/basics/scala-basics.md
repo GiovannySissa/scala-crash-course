@@ -6,6 +6,11 @@ in any mainstream programming language.
 
 After this section you will get familiar enough to write sort of code in Scala without difficult.
 
+## Compile-time and Run-time
+There are two different stages that scala program goes through
+
+1. Compiled: The program must be syntactically correct
+2. Run or evaluated
 
 ## Expressions Types and Values 
 
@@ -17,6 +22,8 @@ so what exactly are expressions, types and values?
 **Types** in Scala all values are Objects, The types can be understood as restrictions on our programs
 that limit how we can manipulate them.<br>
 **Values** are the information stored in the memory
+
+
 
 ### Primitives 
 
@@ -93,7 +100,7 @@ f.printMsg("hello")
 
 ### Case Classes
 
-Case classes are an excep􏰭onally useful shorthand for defining a class
+Case classes are an exceptionally useful shorthand for defining a class
 
 ```scala
 case class Foo(x: Int)
@@ -111,6 +118,47 @@ Features of case class
 - Sensible equals,and hash Code methods that operate on the field values in the object.
 - A copy method that creates  a new object with the same field values as the current one, also you can modify the object but you will get other
 
+### Objects 
+objects in Scala are a class with exactly one instance (Singleton) 
+
+```scala
+object Foo
+
+object Bar {
+  def foo(in: String): String = ???
+}
+```
+
+#### Companion object
+A companion object is an object with the same name as a class
+
+```scala
+import scala.math.{pow, Pi}
+
+case class Circle(radius: Double) {
+  import Circle._
+  def area: Double = calculateArea(radius)
+}
+
+object Circle {
+  private def calculateArea(radius: Double): Double = Pi * pow(radius, 2.0)
+}
+
+val circle1 = Circle(5.0)
+```
+
+*function application syntax* it's a Scala's feature to call an object like a function
+Naming a method apply will allow you do `Foo(args)` instead of `Foo.apply(args)`
+
+
+```scala
+class TimeStamp(val seconds: Long)
+
+object TimeStamp {
+  def apply(hours: Int, minutes: Int, seconds: Int): TimeStamp =
+    new TimeStamp(hours * 3600 + minutes * 60 + seconds)
+}
+```
 
 ### Case objects
 
@@ -126,7 +174,7 @@ case object Citizen {
 
 
 ### Traits
-Traits are templates for crea􏰭ng classes, in the same way that classes are tem- plates for crea􏰭ng objects. Traits allow us to express that two or more classes can be considered the same, and thus both implement the same opera􏰭ons.
+Traits are templates for creating classes, in the same way that classes are tem- plates for creating objects. Traits allow us to express that two or more classes can be considered the same, and thus both implement the same operations.
 
 ```scala
 import java.util.Date
@@ -137,3 +185,17 @@ sealed trait Visitor {
 }
 ```
 ### Pattern Matching
+
+Pattern syntax
+```scala
+expr0 match {
+  case pattern1 => expr1
+  case pattern2 => expr2
+}
+```
+
+A pattern can be one of
+- a name 
+- a underscore, matching and ignore
+- a literal
+- a constructor-style
