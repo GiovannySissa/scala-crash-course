@@ -1,0 +1,3 @@
+ sealed trait M {
+
+}

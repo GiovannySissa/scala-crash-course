@@ -183,9 +183,21 @@ sealed trait Visitor {
     def createdAt: Date
     def age: Long = new Date().getTime() - createdAt.getTime()
 }
+
+case class Anonymous(
+    id: String,
+    createdAt: Date = new Date() 
+) extends Visitor
+
+case class User(
+  id: String,
+  email: String,
+  createdAt: Date = new Date()
+) extends Visitor
 ```
 ### Pattern Matching
-
+Pattern Matching is like an extended `if` expression that allow us to 
+evaluate an expression depending on the shape of the data. 
 Pattern syntax
 ```scala
 expr0 match {
